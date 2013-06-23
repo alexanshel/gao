@@ -12,9 +12,9 @@ class BootStrap {
     println 'setup database'
     // устанавливаем роль и создаём админа
     def adminRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role(authority: 'ROLE_ADMIN').save(failOnError: true)
-    def adminUser = User.findByUsername('ash') ?: new User(
-      username: 'ash',
-      password: springSecurityService.encodePassword('1nflames'),
+    def adminUser = User.findByUsername('admin') ?: new User(
+      username: 'admin',
+      password: springSecurityService.encodePassword('admin'),
       enabled: true
     ).save(failOnError: true)
     if (!adminUser.authorities.contains(adminRole)) {
