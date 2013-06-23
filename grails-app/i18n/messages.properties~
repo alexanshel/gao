@@ -1,0 +1,122 @@
+default.doesnt.match.message=Значение [{2}] поля [{0}] класса [{1}] не соответствует образцу [{3}]
+default.invalid.url.message=Значение [{2}] поля [{0}] класса [{1}] не является допустимым URL-адресом
+default.invalid.creditCard.message=Значение [{2}] поля [{0}] класса [{1}] не является допустимым номером кредитной карты
+default.invalid.email.message=Значение [{2}] поля [{0}] класса [{1}] не является допустимым e-mail адресом
+default.invalid.range.message=Значение [{2}] поля [{0}] класса [{1}] не попадает в допустимый интервал от [{3}] до [{4}]
+default.invalid.size.message=Размер поля [{0}] класса [{1}] (значение: [{2}]) не попадает в допустимый интервал от [{3}] до [{4}]
+default.invalid.max.message=Значение [{2}] поля [{0}] класса [{1}] больше чем максимально допустимое значение [{3}]
+default.invalid.min.message=Значение [{2}] поля [{0}] класса [{1}] меньше чем минимально допустимое значение [{3}]
+default.invalid.max.size.message=Размер поля [{0}] класса [{1}] (значение: [{2}]) больше чем максимально допустимый размер [{3}]
+default.invalid.min.size.message=Размер поля [{0}] класса [{1}] (значение: [{2}]) меньше чем минимально допустимый размер [{3}]
+default.invalid.validator.message=Значение [{2}] поля [{0}] класса [{1}] не допустимо
+default.not.inlist.message=Значение [{2}] поля [{0}] класса [{1}] не попадает в список допустимых значений [{3}]
+default.blank.message=Поле [{0}] класса [{1}] не может быть пустым
+default.not.equal.message=Значение [{2}] поля [{0}] класса [{1}] не может быть равно [{3}]
+default.null.message=Поле [{0}] класса [{1}] не может иметь значение null
+default.not.unique.message=Значение [{2}] поля [{0}] класса [{1}] должно быть уникальным
+
+default.paginate.prev=Предыдушая страница
+default.paginate.next=Следующая страница
+default.boolean.true=Да
+default.boolean.false=Нет
+default.date.format=yyyy-MM-dd HH:mm:ss z
+default.number.format=0
+month.date.format=yyyy-MM
+
+default.created.message={0} {1} создано
+default.updated.message={0} {1} изменено
+default.deleted.message={0} {1} удалено
+default.not.deleted.message={0} {1} не может быть удалена
+default.not.found.message={0} не найдена с id= {1}
+default.optimistic.locking.failure=Другой пользователь изменил запись {0} пока Вы думали
+
+default.home.label=На главную
+default.list.label=Список объектов типа {0}
+default.add.label=Добавить объект {0}
+default.new.label=Новый объект {0}
+default.create.label=Создать объект {0}
+default.show.label=Отобразить объект {0}
+default.edit.label=Редактировать объект {0}
+
+default.button.create.label=Создать
+default.button.edit.label=Редактировать
+default.button.update.label=Обновить
+default.button.delete.label=Удалить
+default.button.delete.confirm.message=Вы действительно хотите удалить?
+
+# Data binding errors. Use "typeMismatch.$className.$propertyName to customize (eg typeMismatch.Book.author)
+typeMismatch.java.net.URL=Property {0} must be a valid URL
+typeMismatch.java.net.URI=Property {0} must be a valid URI
+typeMismatch.java.util.Date=Property {0} must be a valid Date
+typeMismatch.java.lang.Double=Property {0} must be a valid number
+typeMismatch.java.lang.Integer=Property {0} must be a valid number
+typeMismatch.java.lang.Long=Property {0} must be a valid number
+typeMismatch.java.lang.Short=Property {0} must be a valid number
+typeMismatch.java.math.BigDecimal=Property {0} must be a valid number
+typeMismatch.java.math.BigInteger=Property {0} must be a valid number
+
+location.label=Расположение
+location.id.label=ИД
+location.name.label=Наименование
+location.parent.label=Группа
+
+manufacturer.label=Производители
+manufacturer.id.label=ИД
+manufacturer.name.label=Наименование
+
+partType.label=Тип товара
+partType.id.label=ИД
+partType.name.label=Наименование
+partType.parent.label=Входит в состав
+
+partOriginal.label=Оригинал
+partOriginal.id.label=ИД
+partOriginal.car.label=Автомобиль
+partOriginal.type.label=Тип
+partOriginal.oemCode.label=Код OEM
+partOriginal.appliedTo.label=Применим на
+partOriginal.locations.label=Расположения
+partOriginal.manufacturer.label=Производитель
+
+partLocation.label=Склад
+partLocation.location.label=Расположение
+partLocation.part.label=Товар
+partLocation.qty.label=Количество
+partLocation.priceIn.label=Цена закупки
+partLocation.priceOut.label=Цена продажи        
+
+part.label=Деталь
+part.id.label=ИД
+part.oemCode.label=Код OEM
+part.type.label=Тип
+part.locations.label=Расположения
+part.manufacturer.label=Производитель
+part.cross.label=Группа аналогов
+
+partCross.label=Группа аналогов
+partCross.id.label=ИД
+partCross.name.label=Наименование
+partCross.parts.label=Детали
+
+carModel.label=Модель автомобиля
+carModel.id.label=Идентификатор
+carModel.name.label=Наименование
+carModel.manufacturer.label=Производитель
+
+index.controllers.label=Главное меню
+org.ash.gao.domains.CarModelController.label=Модели автомобилей
+org.ash.gao.domains.CarController.label=Автомобили
+org.ash.gao.domains.CarParamController.label=Параметры автомобилей
+org.ash.gao.domains.ParamController.label=Параметры
+org.ash.gao.domains.LocationController.label=Расположения
+org.ash.gao.domains.ManufacturerController.label=Производители
+org.ash.gao.domains.PartController.label=Детали
+org.ash.gao.domains.PartOriginalController.label=Оригиналы
+org.ash.gao.domains.PartLocationController.label=Склад
+org.ash.gao.domains.PartTypeController.label=Типы товаров
+org.ash.gao.domains.Country.label=Страны
+org.ash.gao.domains.Engine.label=Двигатели
+org.ash.gao.domains.PartCrossController.label=Группы аналогов
+
+part.filterButton.label=Фильтр
+part.filterButtonAll.label=Все
