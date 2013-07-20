@@ -9,7 +9,7 @@
   <r:layoutResources/>
 </head>
 <body>
-  <div id="menu">
+  <div id="menu" class="nav" role="navigation">
     <nav:primary scope="user"/>
   </div>
   <g:layoutBody />
