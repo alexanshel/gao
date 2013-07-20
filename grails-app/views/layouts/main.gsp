@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="menu">
-    <nav:primary/>
+    <nav:primary scope="user"/>
   </div>
   <g:layoutBody />
   <r:layoutResources/>

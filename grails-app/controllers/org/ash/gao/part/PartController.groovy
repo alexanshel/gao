@@ -9,22 +9,6 @@ class PartController {
   static springSecurityService
   def messageSource
   def partService
-  
-  static navigation = [
-	[
-      group:     'main', 
-      order:     1, 
-      action:    'index',
-      title:     'parts',
-      path:      'part',
-      subItems:  [
-        [action: 'dashBoard', title: 'dashBoard'],
-        [action: 'list',   title: 'list'],
-        [action: 'create', title: 'create']
-      ],
-      isVisible: {springSecurityService.currentUser != null}
-    ]
-  ]
 
   static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 

@@ -13,7 +13,7 @@ dataSource {
   //"org.hsqldb.jdbcDriver"
   dialect="org.hibernate.dialect.FirebirdDialect"
   username = "SYSDBA"
-  password = "masterke"
+  password = "masterkey"
   //logSql=true
 }
 
@@ -29,7 +29,8 @@ environments {
       dbCreate = "update"
       //"create-drop" // one of 'create', 'create-drop','update'
       //url = "jdbc:firebirdsql://localhost//home/debian/GAOBase/GAO.fdb" //"jdbc:hsqldb:file:deveDb;shutdown=true"
-      url = "jdbc:firebirdsql://localhost/c:/Projects/DB/GAO.FDB"
+      url = "jdbc:firebirdsql://localhost//home/ash/DB/GAO.fdb"
+      //  //"jdbc:firebirdsql://localhost/c:/Projects/DB/GAO.FDB"
 	  //"jdbc:firebirdsql://localhost//home/debian/GAOBase/GAO.fdb"
       //logSql=true
     }
