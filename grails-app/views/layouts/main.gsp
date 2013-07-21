@@ -11,6 +11,7 @@
 <body>
   <div id="menu" class="nav" role="navigation">
     <nav:primary scope="user"/>
+    <nav:secondary scope="user"/>
   </div>
   <g:layoutBody />
   <r:layoutResources/>
