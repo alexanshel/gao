@@ -10,8 +10,8 @@
 </head>
 <body>
   <div id="menu" class="nav" role="navigation">
-    <nav:primary scope="user"/>
-    <nav:secondary scope="user"/>
+    <nav:primary scope="mainMenu"/>
+    <nav:secondary scope="mainMenu"/>
   </div>
   <g:layoutBody />
   <r:layoutResources/>

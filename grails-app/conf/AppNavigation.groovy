@@ -12,10 +12,9 @@ def isAdmin = { ->
 }
 
 navigation = {
-    user {
+    mainMenu {
         //home(controller:'shop', action: 'search', visible: loggedIn)
-        search(controller:'shop', action: 'search', visible: loggedIn)
-        add(controller:'shop', action: 'newPart', visible: loggedIn)
+        shop(controller:'shop', action: 'search', visible: loggedIn)
         references(visible: loggedIn) {
            partTypes(controller:'shop', action: 'search', visible: loggedIn)
            params(controller:'param', action: 'index', visible: loggedIn)

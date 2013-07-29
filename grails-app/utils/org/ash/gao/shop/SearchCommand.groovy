@@ -22,7 +22,9 @@ class SearchCommand implements Serializable {
   String    paramValue1
   String    paramValue2
   
-  static constraints = {}
+  static constraints = {
+    
+  }
   
   public String toString() {
     """

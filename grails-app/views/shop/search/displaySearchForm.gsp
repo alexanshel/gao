@@ -79,6 +79,7 @@
                 action=    "autoCompleteJSON"
                 controller="paramKind"
                 class=     "long"
+                minLength= "0"
               />
               <span id="number">
                 <g:message code="part.filter.param.from.label" default="from"/>
@@ -91,7 +92,7 @@
         </tbody>
       </table>
     </div>
-    <g:submitButton name="search" value="${message(code: 'part.filterButton.label', default: 'Filter')}" />
+    <g:submitButton name="search" value="${message(code: 'shop.search.label', default: 'Search')}" />
   </g:form>
 </body>
 </html>

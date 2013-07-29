@@ -65,6 +65,7 @@ class GAOTagLibTagLib {
    *  @attr currValue  значение по-умолчанию
    *  @attr controller имя контроллера
    *  @attr action     имя действия контроллера возвращающее JSON массив [{key = , value = },...]
+   *  @attr minLength  минимальная длина ввода для появления списка (0 - список появляется при фокусе)
    */
   def autocomplete = {attrs, body ->
     def keyId      = attrs.remove('keyId')?:generateId()
@@ -74,6 +75,7 @@ class GAOTagLibTagLib {
     def currKey    = attrs.remove('currKey')
     def currValue  = attrs.remove('currValue')
     def controller = attrs.remove('controller')
+    def minLength  = attrs.remove('minLength')
     def action     = attrs.action?attrs.remove('action'):'autoCompleteJSON'
     out <<
     """
@@ -84,7 +86,7 @@ class GAOTagLibTagLib {
           jQuery(document.getElementById('${valueId}'))
           .autocomplete({
             source:    "${g.createLink(controller: controller, action: action)}",
-            minLength: 1,
+            minLength: ${minLength},
             select:    function (event, ui) {document.getElementById('${keyId}').value = ui.item.key;}
           });
         });
