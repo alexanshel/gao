@@ -1,5 +1,6 @@
 package org.ash.gao.part.param
 
+import grails.converters.JSON
 class ParamKindController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -96,5 +97,14 @@ class ParamKindController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'paramKind.label', default: 'ParamKind'), params.id])}"
             redirect(action: "list")
         }
+    }
+    
+    def autoCompleteJSON = {
+      def l = ParamKind.findAllByNameIlike('%' + params.term + '%')
+      def jsonList = l.collect {[ 
+        key:   it.id,
+        value: it.name
+      ]}
+      render jsonList as JSON
     }
 }

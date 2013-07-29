@@ -1,7 +1,8 @@
 package org.ash.gao.part.param
 
+import org.ash.gao.IGAOReference
 
-class Dict {
+class Dict implements IGAOReference {
 
   Integer num
   String  name

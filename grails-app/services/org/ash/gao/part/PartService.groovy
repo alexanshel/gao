@@ -4,19 +4,20 @@ class PartService {
 
   static transactional = true
 
-  def getFiltred(params) {
-    def filterOEM = params.filterOEM
-    def filterPartType_id = (params.filter.partType.id && params.filter.partType.id != 'null')?:null
-    def filterPartKind   = (params.filter.partKind && params.filter.partKind != 'null')?:null
-    def filterParamKind  = (params.filter.paramKind && params.filter.paramKind != 'null')?:null
-    def filterParamValue1 = (params.filter.paramValue1 && params.filter.paramValue1 != 'null')?:null
-    def filterParamValue2 = (params.filter.paramValue2 && params.filter.paramValue2 != 'null')?:null
+  def getFiltred(filter, params) {
+    //def filter = params.filter
+    def filterOEM = filter.oem
+    def filterPartType_id = filter.partType?.id
+    def filterPartKind   =  filter.partKind?.id
+    def filterParamKind  =  filter.paramKind?.id
+    def filterParamValue1 = filter.paramValue1
+    def filterParamValue2 = filter.paramValue2
     // if one of filter values is set
     if (filterOEM || filterPartType_id || filterPartKind || filterParamKind)  {
       def partTypeIds = []
       // filter by partTypes
       if (filterPartType_id) {
-        def partType =  PartType.get(Long.parseLong(params.filterPartType_id))
+        def partType =  PartType.get(filterPartType_id)
         partTypeIds = [partType.id] + partType.childsAll*.id
       }
       def filterOEMTrunc = filterOEM?.toLowerCase()?.replaceAll("\\W", '')
@@ -30,7 +31,7 @@ class PartService {
           if (filterPartKind)
             type {
               kind {
-                eq('id', Long.parseLong(params.filterPartKind))
+                eq('id', filterPartKind)
               }
             }
           // params filter
@@ -39,7 +40,7 @@ class PartService {
               and {
                 kind {
                   and {
-                    eq('id', Long.parseLong(filterParamKind))
+                    eq('id', filterParamKind)
                     eq('class', 'org.ash.gao.part.param.ParamKindNumber')
                   }
                 }
@@ -50,7 +51,7 @@ class PartService {
               and {
                 kind {
                   and {
-                    eq('id', Long.parseLong(filterParamKind))
+                    eq('id', filterParamKind)
                     eq('class', 'org.ash.gao.part.param.ParamKindString')
                   }
                 }
@@ -62,15 +63,14 @@ class PartService {
         }
       }
       // with cross parts
-      if (params.withCrosses == 'on') {
+      if (filter.withCrosses) {
         def withCrosses = [] << parts;
         parts.each {withCrosses += (it.cross?.parts)?:[]}
         parts = withCrosses.flatten().unique()
       }
       [
         partInstanceList: parts,
-        partInstanceTotal: parts.size(),
-        filter: params.filter
+        partInstanceTotal: parts.size()
       ]
     }
     else {

@@ -1,6 +1,8 @@
 package org.ash.gao.part
 
-class PartKind {
+import org.ash.gao.IGAOReference
+
+class PartKind implements IGAOReference {
   String name
 
   String toString() {

@@ -1,6 +1,8 @@
 package org.ash.gao.part
 
-class PartLocation implements Comparable {
+import org.ash.gao.IGAODomain
+
+class PartLocation implements IGAODomain, Comparable {
   Location location
   Integer  qty
   Double   priceIn

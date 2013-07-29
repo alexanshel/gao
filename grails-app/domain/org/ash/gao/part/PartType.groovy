@@ -1,8 +1,9 @@
 package org.ash.gao.part
 
 import org.ash.gao.part.param.*;
+import org.ash.gao.IGAODomain
 
-class PartType {
+class PartType implements IGAODomain {
     PartType parent
     String   name
 

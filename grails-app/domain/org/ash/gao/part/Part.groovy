@@ -2,8 +2,9 @@ package org.ash.gao.part
 
 import org.ash.gao.common.*;
 import org.ash.gao.part.param.*;
+import org.ash.gao.IGAODomain
 
-class Part {
+class Part implements IGAODomain {
     String    oemCode //код производителя
     PartType  type
     String    codeTrunc // усеченный код производителя 

@@ -1,6 +1,8 @@
 package org.ash.gao.part
 
-class PartCross {
+import org.ash.gao.IGAODomain
+
+class PartCross implements IGAODomain {
     
     String name
 

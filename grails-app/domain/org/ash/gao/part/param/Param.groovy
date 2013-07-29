@@ -3,8 +3,9 @@ package org.ash.gao.part.param
 import groovy.beans.Bindable;
 
 import org.ash.gao.part.Part;
+import org.ash.gao.IGAOReference
 
-class Param {
+class Param implements IGAOReference {
 
   ParamKind kind
   Double    valueNumber

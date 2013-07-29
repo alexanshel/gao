@@ -9,6 +9,6 @@ package org.ash.gao;
  *
  * @author ASh
  */
-public interface IGAOReference {
+public interface IGAOReference extends IGAODomain {
 
 }

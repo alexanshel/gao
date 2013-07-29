@@ -5,13 +5,31 @@
   <meta name="layout" content="main"/>
   <g:set var="entityName" value="${message(code: 'part.label', default: 'Part')}"/>
   <title><g:message code="default.list.label" args="[entityName]"/></title>
-  <gui:resources components='autoComplete'/>
 </head>
 <body>
   <div class="body">
     <div class="filter-params">
+      <h1><g:message code="shop.filter.params" default="Filter params"/></h1>
+      <g:if test="${filter.oem != null}">
+        <div><g:message code="part.oemCode.label"/>: ${filter.oem}</div>
+      </g:if>
+      <g:if test="${filter.partType?.id}">
+        <div><g:message code="part.partType.label"/>: ${filter.partType.name}</div>
+      </g:if>
+      <g:if test="${filter.partKind?.id}">
+        <div><g:message code="part.partKind.label"/>: ${filter.partKind?.name}</div>
+      </g:if>
+      <g:if test="${filter.withCrosses}">
+        <div><g:message code="filter.withCrosses.label"/></div>
+      </g:if>
+      <g:if test="${filter.paramKind?.id}">
+        <div><g:message code="part.paramKind.label"/>: ${filter.paramKind?.name}</div>
+      </g:if>
+      <g:form>
+        <g:submitButton name="searchAgain" value="${message(code: 'shop.search-again.button.label', default: 'Search again')}" />
+      </g:form>
     </div>
-    <h1><g:message code="default.list.label" args="[entityName]"/></h1>
+    <h1><g:message code="shop.searched.list.label" default="Searched items"/></h1>
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>

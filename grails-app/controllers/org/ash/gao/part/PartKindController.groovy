@@ -1,6 +1,7 @@
 package org.ash.gao.part
 
 import org.ash.gao.part.PartKind;
+import grails.converters.JSON
 
 class PartKindController {
 
@@ -98,5 +99,14 @@ class PartKindController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'partKind.label', default: 'PartKind'), params.id])}"
             redirect(action: "list")
         }
+    }
+    
+    def autoCompleteJSON = {
+      def l = PartKind.findAllByNameIlike('%' + params.term + '%')
+      def jsonList = l.collect {[ 
+        key:   it.id,
+        value: it.name
+      ]}
+      render jsonList as JSON
     }
 }
