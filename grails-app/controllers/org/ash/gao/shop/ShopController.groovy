@@ -34,7 +34,13 @@ class ShopController {
  
   // добавление товара
   def newPart() {
-    
+    displayFirstParams {
+      on("addCostOrAddParams")
+      .to("displayLocationsParams")
+    }
+    displayLocationsParams() {
+      on("ok").to("")
+    }
   }
 
   // справочники
