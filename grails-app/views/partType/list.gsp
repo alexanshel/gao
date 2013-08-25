@@ -3,7 +3,8 @@
 <html>
   <head>
     <g:javascript library="jquery" plugin="jquery"/>
-    <jsTree:resources />
+<%--    <jsTree:resources />--%>
+    <r:require module="jsTree"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'partType.label', default: 'PartType')}" />

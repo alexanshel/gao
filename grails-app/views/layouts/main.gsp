@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title><g:layoutTitle default="Grails" /></title>
@@ -6,14 +7,24 @@
   <g:layoutHead />
   <r:require module="jquery"/>
   <r:require module="jquery-ui"/>
+  <r:require module="bootstrap"/>
+  <!-- JavaScript приложения -->
+  <r:require module="gao"/>
   <r:layoutResources/>
 </head>
 <body>
-  <div id="menu" class="nav" role="navigation">
-    <nav:primary scope="mainMenu"/>
-    <nav:secondary scope="mainMenu"/>
+  <div class="container">
+    <sec:ifLoggedIn>
+      <div id="menu" class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <nav:primary scope="mainMenu"/>
+          <!--  nav:secondary scope="mainMenu"/-->
+        </div>
+      </div>
+    </sec:ifLoggedIn>
+    <g:breadcrumb/>
+    <g:layoutBody />
   </div>
-  <g:layoutBody />
   <r:layoutResources/>
 </body>
 </html>

@@ -52,20 +52,18 @@
             />
           </td>
           <td valign="top" class="value ${hasErrors(bean: partLocationInstance, field: 'qty', 'errors')}">
-            <g:textField name="locations[${i}].qty" value="${partLocationInstance?.qty}" class="location-qty"/>
+            <g:textField name="locations[${i}].qty" value="${partLocationInstance?.qty}" class="input-small location-qty"/>
           </td>
           <td valign="top" class="value ${hasErrors(bean: partLocationInstance, field: 'priceIn', 'errors')}">
-            <g:textField name="locations[${i}].priceIn" value="${partLocationInstance?.priceIn}" class="location-price-in"/>
+            <g:textField name="locations[${i}].priceIn" value="${partLocationInstance?.priceIn}" class="input-small location-price-in"/>
           </td>
           <td valign="top" class="value ${hasErrors(bean: partLocationInstance, field: 'priceOut', 'errors')}">
-            <g:textField name="locations[${i}].priceOut" value="${partLocationInstance?.priceOut}" class="location-price-out"/>
+            <g:textField name="locations[${i}].priceOut" value="${partLocationInstance?.priceOut}" class="input-small location-price-out"/>
           </td>
           <td valign="top" class="value">
-            <span class="button">
-              <button onclick="remPartLocation(this);" value="add" type="button">
-                <g:message code="default.button.delete.label" default="delete"/>
-              </button>
-            </span>
+            <button onclick="remPartLocation(this);" value="add" type="button" class="btn btn-danger">
+              <i class="icon-remove"></i>
+            </button>
           </td>
         </tr>
       </g:each>
@@ -77,20 +75,21 @@
             optionKey="id" value="${partLocationInstance?.location?.id}"
           />
         </td>
-        <td valign="top" class="value"><g:textField name="locations[#].qty" value="0" disabled="disabled"/></td>
-        <td valign="top" class="value"><g:textField name="locations[#].priceIn" value="0" disabled="disabled"/></td>
-        <td valign="top" class="value"><g:textField name="locations[#].priceOut" value="0" disabled="disabled"/></td>
+        <td valign="top" class="value"><g:textField class="input-small" name="locations[#].qty" value="0" disabled="disabled"/></td>
+        <td valign="top" class="value"><g:textField class="input-small" name="locations[#].priceIn" value="0" disabled="disabled"/></td>
+        <td valign="top" class="value"><g:textField class="input-small" name="locations[#].priceOut" value="0" disabled="disabled"/></td>
         <td valign="top" class="value">
-          <span class="button">
-            <button onclick="remPartLocation(this);" value="add" type="button">
-              <g:message code="default.button.delete.label" default="delete"/>
-            </button>
-          </span>
+          <button onclick="remPartLocation(this);" value="add" type="button" class="btn btn-danger">
+            <i class="icon-remove"></i>
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="buttons">
-    <button onclick="addPartLocation();" value="add" type="button"><g:message code="default.button.add.label" default="add"/></button>
+  <div class="btn-toolbar">
+    <button onclick="addPartLocation();" value="add" type="button" class="btn btn-primary">
+      <i class="icon-plus-sign"></i>
+      <g:message code="default.button.add.label" default="add"/>
+    </button>
   </div>
 </div>

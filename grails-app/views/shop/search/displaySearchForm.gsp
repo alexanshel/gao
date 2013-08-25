@@ -7,7 +7,7 @@
 </head>
 <body>
   <g:form method="post" controller="shop" action="search">
-    <div class="dialog">
+    <p>
       <table>
         <tbody>
           <!-- OEM -->
@@ -23,7 +23,7 @@
                 keyName=   "partType.id"
                 valueName= "partType.name"
                 currKey=   "${filter.partType?.id}"
-                currValue= "${filter.partType?.name}"
+                currValue= "${filter.partType?.name?:''}"
                 action=    "autoCompleteJSON"
                 controller="partType"
                 class=     "long"
@@ -38,18 +38,11 @@
                 keyName=   "partKind.id"
                 valueName= "partKind.name"
                 currKey=   "${filter.partKind?.id}"
-                currValue= "${filter.partKind?.name}"
+                currValue= "${filter.partKind?.name?:''}"
                 action=    "autoCompleteJSON"
                 controller="partKind"
                 class=     "long"
               />
-<!--              <g:select 
-                name="partKind" 
-                from="${org.ash.gao.part.PartKind.list()}"
-                noSelection="${[null: message(code: 'part.filterPartType.all-value.label', default: 'Any')]}"
-                optionKey="id"
-                value="${filter.partKind}"
-              />-->
             </td>
           </tr>
           <!-- withCrosses -->
@@ -75,7 +68,7 @@
                 keyName=   "paramKind.id"
                 valueName= "paramKind.name"
                 currKey=   "${filter.paramKind?.id}"
-                currValue= "${filter.paramKind?.name}"
+                currValue= "${filter.paramKind?.name?:''}"
                 action=    "autoCompleteJSON"
                 controller="paramKind"
                 class=     "long"
@@ -83,16 +76,18 @@
               />
               <span id="number">
                 <g:message code="part.filter.param.from.label" default="from"/>
-                <g:textField name="paramValue1" value="${filter.paramValue1}"></g:textField>
+                <g:textField class="span2" name="paramValue1" value="${filter.paramValue1}"></g:textField>
                 <g:message code="part.filter.param.to.label" default="to"/>
-                <g:textField name="paramValue2" value="${filter.paramValue2}"></g:textField>
+                <g:textField class="span2" name="paramValue2" value="${filter.paramValue2}"></g:textField>
               </span>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <g:submitButton name="search" value="${message(code: 'shop.search.label', default: 'Search')}" />
+    </p>
+    <p>
+      <g:submitButton name="search" class="btn btn-primary" value="${message(code: 'shop.search.label', default: 'Search')}" />
+    </p>
   </g:form>
 </body>
 </html>

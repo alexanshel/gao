@@ -1,5 +1,6 @@
 package org.ash.gao.part
 
+import grails.converters.JSON
 import org.ash.gao.part.Location;
 
 class LocationController {
@@ -98,5 +99,14 @@ class LocationController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'location.label', default: 'Location'), params.id])}"
             redirect(action: "list")
         }
+    }
+
+    def autoCompleteJSON = {
+      def l = PartType.findAllByNameIlike('%' + params.term + '%')
+      def jsonList = l.collect {[
+        key:   it.id,
+        value: it.name
+      ]}
+      render jsonList as JSON
     }
 }

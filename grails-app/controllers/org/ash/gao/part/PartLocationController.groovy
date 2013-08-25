@@ -1,5 +1,6 @@
 package org.ash.gao.part
 
+import grails.converters.JSON
 import org.ash.gao.part.PartLocation;
 
 class PartLocationController {

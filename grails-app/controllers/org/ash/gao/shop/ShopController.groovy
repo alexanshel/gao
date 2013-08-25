@@ -1,5 +1,7 @@
 package org.ash.gao.shop
 
+import org.ash.gao.part.PartType
+
 class ShopController {
   static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -22,7 +24,6 @@ class ShopController {
     displaySearchForm {
       on("search") {SearchCommand sc ->
         flow.filter = sc
-        print(sc.oem)
         partService.getFiltred(sc, params) + [filter: flow.filter]
       }.to("displayResults")
     }
@@ -33,7 +34,7 @@ class ShopController {
   }
  
   // добавление товара
-  def newPart() {
+  def newPartFlow = {
     displayFirstParams {
       on("addCostOrAddParams")
       .to("displayLocationsParams")
@@ -42,9 +43,19 @@ class ShopController {
       on("ok").to("")
     }
   }
+  
+  def createPart() {
+    def paramsNew = [:];
+
+    if (params.oem) paramsNew.oemCode = params.oem
+    if (params.part.type.id) paramsNew["type.id"] = params.part.type.id
+    if (params.part.kind.id) paramsNew["kind.id"] = params.part.kind.id
+
+    redirect(controller: "part", action: "create", params: paramsNew)
+  }
 
   // справочники
   def references() {
-    
+    []
   }
 }

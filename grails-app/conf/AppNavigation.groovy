@@ -14,13 +14,30 @@ def isAdmin = { ->
 navigation = {
     mainMenu {
         //home(controller:'shop', action: 'search', visible: loggedIn)
-        shop(controller:'shop', action: 'search', visible: loggedIn)
-        references(visible: loggedIn) {
-           partTypes(controller:'shop', action: 'search', visible: loggedIn)
-           params(controller:'param', action: 'index', visible: loggedIn)
+        shop(controller:'shop', action: 'search', visible: loggedIn) {
+          add(controller: 'part', action: 'create')
+          edit(controller: 'part', action: 'edit')
         }
-        login(controller:'login', action:'index', visible: loggedOut) 
-        logout(controller:'logout', action:'index', visible: loggedIn)
+        references(visible: loggedIn, controller:'shop', action: 'references') {
+          manufacturer(controller: 'manufacturer', action: 'list') {
+            create()
+            edit()
+          }
+          location(controller: 'location', action: 'list') {
+            create()
+            edit()
+          }
+          paramKind(controller: 'paramKind', action: 'list') {
+            create()
+            edit()
+          }
+          partType(controller: 'partType', action: 'tree') {
+            create()
+            edit()
+          }
+        }
+        login( controller: 'login',  action: 'index', visible: loggedOut) 
+        logout(controller: 'logout', action: 'index', visible: loggedIn)
     }
      
     //admin {

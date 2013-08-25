@@ -30,7 +30,7 @@ class PartTypeController {
       ]}
       render jsonList as JSON
     }
-    
+
     def tree = {
       [partTypeInstanceRoot: PartType.findByParentIsNull()]
     }
@@ -119,4 +119,47 @@ class PartTypeController {
             redirect(action: "list")
         }
     }
+    /**
+     * Для модального AJAX диалога
+     * @return
+     */
+    def editDialog() {
+        def partTypeInstance = PartType.get(params.id)
+        if (!partTypeInstance) {
+          partTypeInstance = new PartType(params)
+        }
+        return [partTypeInstance: partTypeInstance]
+    }
+    
+    def updateAJAX() {
+      def partTypeInstance = PartType.get(params.id)
+      if (partTypeInstance) {
+        if (params.version) {
+          def version = params.version.toLong()
+          if (partTypeInstance.version > version) {
+            partTypeInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'partType.label', default: 'PartType')] as Object[], "Another user has updated this PartType while you were editing")
+            render(view: "editDialog", model: [partTypeInstance: partTypeInstance])
+            return
+          }
+        }
+        partTypeInstance.properties = params
+        if (!partTypeInstance.hasErrors() && partTypeInstance.save(flush: true)) {
+          flash.message = "${message(code: 'partType.saved.message')}"
+          render(view: "editDialog", model: [partTypeInstance: partTypeInstance, saved: true])
+        }
+        else {
+          render(view: "editDialog", model: [partTypeInstance: partTypeInstance])
+        }
+      }
+      else {
+        partTypeInstance = new PartType(params)
+        if (partTypeInstance.save(flush: true)) {
+          flash.message = "${message(code: 'partType.created.message')}"
+          render(view: "editDialog", model: [partTypeInstance: partTypeInstance, saved: true])
+        }
+        else {
+          render(view: "editDialog", model: [partTypeInstance: partTypeInstance])
+        }
+      }
+  }
 }

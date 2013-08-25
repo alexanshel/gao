@@ -9,63 +9,94 @@
 <body>
   <div class="body">
     <div class="filter-params">
-      <h1><g:message code="shop.filter.params" default="Filter params"/></h1>
-      <g:if test="${filter.oem != null}">
-        <div><g:message code="part.oemCode.label"/>: ${filter.oem}</div>
-      </g:if>
-      <g:if test="${filter.partType?.id}">
-        <div><g:message code="filter.partKind.label"/>: ${filter.partType.name}</div>
-      </g:if>
-      <g:if test="${filter.partKind?.id}">
-        <div><g:message code="filter.partKind.label"/>: ${filter.partKind.name}</div>
-      </g:if>
-      <div>
-        <g:if test="${filter.withCrosses}">
-          <g:message code="filter.withCrosses.label"/>
-        </g:if>
-        <g:else>
-          <g:message code="filter.withoutCrosses.label"/>
-        </g:else>
-      </div>
-      <g:if test="${filter.paramKind?.id}">
-        <div><g:message code="part.paramKind.label"/>: ${filter.paramKind?.name}</div>
-      </g:if>
-      <g:form>
-        <g:submitButton name="searchAgain" value="${message(code: 'shop.search-again.button.label', default: 'Search again')}" />
-      </g:form>
+      <ul class="thumbnails">
+        <li class="span3">
+          <h4><g:message code="shop.filter.params" default="Filter params"/>:</h4>
+        </li>
+        <li class="span4">
+          <p>
+          <table>
+            <g:if test="${filter.oem != null}">
+              <tr>
+                <td><g:message code="part.oemCode.label"/>:</td>
+                <td>${filter.oem}</td>
+              </tr>
+            </g:if>
+            <g:if test="${filter.partType?.id}">
+              <tr>
+                <td><g:message code="filter.partType.label"/>:</td>
+                <td>${filter.partType.name}</td>
+              </tr>
+            </g:if>
+            <g:if test="${filter.partKind?.id}">
+              <tr>
+                <td><g:message code="filter.partKind.label"/>:</td>
+                <td>${filter.partKind.name}</td>
+              </tr>
+            </g:if>
+            <tr>
+              <td>
+                <g:message code="filter.withCrosses.label"/>:
+              </td>
+              <td>
+                <g:if test="${filter.withCrosses}">${message(code: "default.boolean.true")}</g:if>
+                <g:else>${message(code: "default.boolean.false")}</g:else>
+              </td>
+            </tr>
+            <g:if test="${filter.paramKind?.id}">
+              <tr>
+                <td><g:message code="part.paramKind.label"/>:</td>
+                <td>${filter.paramKind?.name} <g:message code="part.paramKind.value.label" args="[filter.paramValue1, filter.paramValue2]"/></td>
+              </tr>
+            </g:if>
+          </table>
+          </p>
+            <g:link 
+              class="btn btn-mini"
+              action="createPart"
+              params="[oem: filter.oem, 'part.type.id': filter.partType?.id, 'part.kind.id': filter.partKind?.id]"
+            >
+              <g:message code="shop.create-part.label"/>
+            </g:link>
+        </li>
+        <li class="span3">
+          <g:form>
+            <g:submitButton class="btn btn-primary" name="searchAgain" value="${message(code: 'shop.search-again.button.label', default: 'Search again')}" />
+          </g:form>
+        </li>
+      </ul>
     </div>
-    <h1><g:message code="shop.searched.list.label" default="Searched items"/></h1>
+    <h3><g:message code="shop.searched.list.label" default="Searched items" args="${partInstanceTotal}"/>:</h3>
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
     <g:if test="${partInstanceList.size() == 0}">
       <g:message code="shop.not-found.message"/>
-      <div><g:actionSubmit value="${message(code: 'shop.create-part.label')}" action="create"/></div>
     </g:if>
     <g:if test="${partInstanceList.size() > 0}">
       <div class="list">
-        <table>
+        <table class="table table-hover">
           <thead>
             <tr>
               <th><g:message code="part.oemCode.label"  default="Oem Code"/></th>
               <g:sortableColumn property="manufacturer" title="${message(code: 'part.manufacturer.label', default: 'Manufacturer')}"/>
               <th><g:message code="part.params.label"  default="Params"/></th>
               <th><g:message code="part.cross.label"    default="Cross"/></th>
-              <th><g:message code="part.actions.label"  default="Actions"/></th>
               <th><g:message code="part.qty.label"      default="Qty"/></th>
+              <th><g:message code="part.actions.label"  default="Actions"/></th>
             </tr>
           </thead>
           <tbody>
             <g:each in="${partInstanceList}" status="i" var="partInstance">
               <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                 <td>
-                  <g:link action="show" id="${partInstance.id}">${fieldValue(bean: partInstance, field: "oemCode")}</g:link>
+                  <g:link controller="part" action="edit" id="${partInstance.id}">
+                    ${fieldValue(bean: partInstance, field: "oemCode")}
+                  </g:link>
                   <br/>
                   ${fieldValue(bean: partInstance, field: "type")}
                 </td>
-                <td>
-                  ${fieldValue(bean: partInstance, field: "manufacturer")}
-                </td>
+                <td>${fieldValue(bean: partInstance, field: "manufacturer")}</td>
                 <td>
                   <g:each in="${partInstance.parameters}" var="paramInstance">
                     <div>
@@ -76,20 +107,6 @@
                 <td class="menuButton">
                   <g:link class="create" action="create" id="${partInstance.id}" target="_blank"/>
                 </td>
-                <!-- actions -->
-                <td>
-                  <g:if test="${partInstance?.locations?.size() > 0}">
-                    <g:link action="show">
-                      <g:message
-                        code="part.actions.bye.label"
-                        default="Bye"
-                      />
-                    </g:link>
-                  </g:if>
-                  <g:if test="${partInstance?.locations?.size() == 0}">
-                    <g:link action="show"><g:message code="part.actions.order.label" default="Order"/></g:link>
-                  </g:if>
-                </td>
                 <!-- qty -->
                 <td>
                   <g:each in="${partInstance.locations}" var="partLocationInstance">
@@ -99,6 +116,38 @@
                     </g:link>
                     &nbsp;
                   </g:each>
+                </td>
+                <!-- actions -->
+                <td>
+                  <div class="btn-group">
+                    <button class="btn dropdown-toggle btn-primary btn-mini" data-toggle="dropdown">
+                      ${message(code: 'part.action.button.label')}
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <g:if test="${partInstance?.locations?.size() > 0}">
+                        <li>
+                          <g:link controller="part" action="show">
+                            <i class="icon-shopping-cart"></i>
+                            ${message(code: 'part.actions.sale.label')}
+                          </g:link>
+                        </li>
+                      </g:if>
+                      <li>
+                        <g:link controller="part" action="show">
+                          <i class="icon-plus-sign"></i>
+                          ${message(code: 'part.actions.order.label')}
+                        </g:link>
+                      </li>
+                      <li class="divider"/>
+                      <li>
+                        <g:link class="create" controller="part" action="create" id="${partInstance.id}" target="_blank">
+                          <i class="icon-plus-sign"></i>
+                          ${message(code: 'part.actions.create-by.label')}
+                        </g:link>
+                      </li>
+                    </ul>
+                  </div>
                 </td>
               </tr>
             </g:each>

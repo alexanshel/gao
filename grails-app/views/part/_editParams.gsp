@@ -62,8 +62,8 @@
           </td>
           <td valign="top" class="value">
             <span class="button">
-              <button onclick="remPartParameter(this);" value="add" type="button">
-                <g:message code="default.button.delete.label" default="delete"/>
+              <button onclick="remPartParameter(this);" value="add" type="button" class="btn btn-danger">
+                <i class="icon-remove"></i>
               </button>
             </span>
           </td>
@@ -87,17 +87,17 @@
           <g:textField name="parameters[#].value" class="parameter-value" disabled="disabled"/>
         </td>
         <td valign="top" class="value">
-          <span class="button">
-            <button onclick="remPartParameter(this);" value="add" type="button">
-              <g:message code="default.button.delete.label" default="delete"/>
-            </button>
-          </span>
+          <button onclick="remPartParameter(this);" value="add" type="button" class="btn btn-danger">
+            <i class="icon-remove"></i>
+          </button>
         </td>
       </tr>
 
     </tbody>
   </table>
-  <div class="buttons">
-    <button onclick="addPartParameter();" value="add" type="button"><g:message code="default.button.add.label" default="add"/></button>
+  <div class="btn-toolbar">
+    <button onclick="addPartParameter();" value="add" type="button" class="btn btn-primary">
+      <i class="icon-plus-sign"></i>
+    </button>
   </div>
 </div>

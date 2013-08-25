@@ -176,25 +176,25 @@ class PartController {
       redirect(action: list)
     }
   
-  def createFlow ={
-    // ввод OEM, выбор типа детали
-    enterMain {
-      on("enterLocations").to "enterLocations"
-      on("enterParams").to "enterParams"
-      on("enterPartType").to "enterPartType"
-      on("save").to "save"
-    }
-    // добавление на склад
-    enterLocations {
-    }
-    // ввод параметров
-    enterParams {
-    }
-    // ввод типа детали
-    enterPartType {
-    }
-    // сохранение
-    save {
-    }
-  }
+//  def createFlow ={
+//    // ввод OEM, выбор типа детали
+//    enterMain {
+//      on("enterLocations").to "enterLocations"
+//      on("enterParams").to "enterParams"
+//      on("enterPartType").to "enterPartType"
+//      on("save").to "save"
+//    }
+//    // добавление на склад
+//    enterLocations {
+//    }
+//    // ввод параметров
+//    enterParams {
+//    }
+//    // ввод типа детали
+//    enterPartType {
+//    }
+//    // сохранение
+//    save {
+//    }
+//  }
 }

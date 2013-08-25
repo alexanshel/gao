@@ -1,5 +1,7 @@
 package org.ash.gao.part
 
+import org.ash.gao.part.param.*
+
 class PartService {
 
   static transactional = true
@@ -35,31 +37,33 @@ class PartService {
               }
             }
           // params filter
-          if (filterParamKind && filterParamValue1)
+          if (filterParamKind && filterParamValue1) {
+            def paramKind = ParamKind.get(filterParamKind)
             parameters {
-              and {
-                kind {
-                  and {
+              if (paramKind instanceof ParamKindNumber) {
+                and { 
+                  kind { and {
                     eq('id', filterParamKind)
                     eq('class', 'org.ash.gao.part.param.ParamKindNumber')
-                  }
+                  }}
+                  ge('valueNumber', Double.parseDouble(filterParamValue1))
+                  if (filterParamValue2)
+                    le('valueNumber', Double.parseDouble(filterParamValue2))
                 }
-                ge('valueNumber', Double.parseDouble(filterParamValue1))
-                if (filterParamValue2)
-                  le('valueNumber', Double.parseDouble(filterParamValue2))
               }
-              and {
-                kind {
-                  and {
+              else if (paramKind instanceof ParamKindString) {
+                and {
+                  kind { and {
                     eq('id', filterParamKind)
                     eq('class', 'org.ash.gao.part.param.ParamKindString')
-                  }
+                  }}
+                  ge('valueString', filterParamValue1)
+                  if (filterParamValue2)
+                    le('valueString', filterParamValue2)
                 }
-                ge('valueString', filterParamValue1)
-                if (filterParamValue2)
-                  le('valueString', filterParamValue2)
               }
             }
+          }
         }
       }
       // with cross parts

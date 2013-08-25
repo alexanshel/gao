@@ -82,8 +82,9 @@ log4j = {
 	       'org.springframework',
 	       'org.hibernate',
            'net.sf.ehcache.hibernate'
-
-    warn   'org.mortbay.log'
+    //debug 'org.grails.plugin.platform',
+    //      'org.codehaus.groovy.grails.web.pages' //  GSP
+    warn  'org.mortbay.log'
 }
 
 
@@ -102,4 +103,5 @@ grails.plugins.springsecurity.interceptUrlMap = [
   '/images/*': ['IS_AUTHENTICATED_ANONYMOUSLY'],
   '/**':       ['ROLE_ADMIN']
 ]
-
+// Разделитьель хлебныйх крошек
+breadcrumbs.divider = "&gt;"

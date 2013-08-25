@@ -9,10 +9,6 @@
     <title><g:message code="default.create.label" args="[entityName]" /></title>
   </head>
   <body>
-    <div class="nav">
-      <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-      <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-    </div>
     <div class="body">
     <h1><g:message code="default.create.label" args="[entityName]" /></h1>
     <g:if test="${flash.message}">
@@ -43,13 +39,14 @@
               </td>
               <td valign="top" class="value ${hasErrors(bean: partInstance, field: 'type', 'errors')}">
                 <g:autocomplete
-                  id="AutoType"
-                  nameId="type.id"
-                  action="autoCompleteJSON"
+                  keyName=   "partType.id"
+                  valueName= "partType.name"
+                  currKey=   "${partInstance?.type?.id}"
+                  currValue= "${partInstance?.type?.name}"
+                  action=    "autoCompleteJSON"
                   controller="partType"
-                  class="long"
-                  currValId="${partInstance?.type?.id}"
-                  currValName="${partInstance?.type?.name}"
+                  class=     "long"
+                  id="AutoType"
                 /> 
               </td>
             </tr>
@@ -60,12 +57,14 @@
               </td>
               <td valign="top" class="value ${hasErrors(bean: partInstance, field: 'manufacturer', 'errors')}">
                 <g:autocomplete
-                  id="AutoManufacturer"
-                  nameId="manufacturer.id"
+                  id=        "AutoManufacturer"
+                  keyName=   "manufacturer.id"
+                  valueName= "manufacturer.name"
+                  currKey=   "${partInstance?.manufacturer?.id}"
+                  currValue= "${partInstance?.manufacturer?.name}"
                   controller="manufacturer"
-                  class="long"
-                  currValId="${partInstance?.manufacturer?.id}"
-                  currValName="${partInstance?.manufacturer?.name}"
+                  action=    "autoCompleteJSON"
+                  class=     "long"
                 /> 
               </td>
             </tr>
