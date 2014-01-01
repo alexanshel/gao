@@ -109,14 +109,13 @@ class ManufacturerController {
     }
     
     def autoCompleteJSON = {
-      def l = Manufacturer.findAllByNameIlike('%' + params.query + '%')
+      def l = Manufacturer.findAllByNameIlike('%' + params.term + '%')
       def jsonList = l.collect {[ 
-        id: it.id,
-        name: it.name
+        key:   it.id,
+        value: it.name
       ]}
-      def jsonResult = [
-        result: jsonList
-      ]
-      render jsonResult as JSON
+      render jsonList as JSON
     }
+    
+    
 }

@@ -78,7 +78,7 @@ class PartService {
       ]
     }
     else {
-      params.max = Math.min(params.max ? params.int('max') : 10, 100)
+      params.max = 20 //Math.min(params.max ? params.int('max') : 10, 100)
       [partInstanceList: Part.list(params), partInstanceTotal: Part.count()]
     }
       

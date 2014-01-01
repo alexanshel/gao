@@ -27,7 +27,7 @@
     }
   </g:javascript>
   <g:hiddenField name="location-size" id="location-size" value="${partInstance?.locations?.size()}" />
-  <table>
+  <table class="table-bordered">
     <thead>
       <tr>
         <th><g:message code="partLocation.location.label" default="Location" /></th>
@@ -87,9 +87,8 @@
     </tbody>
   </table>
   <div class="btn-toolbar">
-    <button onclick="addPartLocation();" value="add" type="button" class="btn btn-primary">
+    <button onclick="addPartLocation();" value="add" type="button" class="btn">
       <i class="icon-plus-sign"></i>
-      <g:message code="default.button.add.label" default="add"/>
     </button>
   </div>
 </div>

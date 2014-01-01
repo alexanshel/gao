@@ -75,7 +75,7 @@
     </g:if>
     <g:if test="${partInstanceList.size() > 0}">
       <div class="list">
-        <table class="table table-hover">
+        <table class="table table-hover table-bordered">
           <thead>
             <tr>
               <th><g:message code="part.oemCode.label"  default="Oem Code"/></th>
@@ -153,9 +153,6 @@
             </g:each>
           </tbody>
         </table>
-      </div>
-      <div class="paginateButtons">
-        <g:paginate total="${partInstanceTotal}" />
       </div>
     </g:if>
   </div>

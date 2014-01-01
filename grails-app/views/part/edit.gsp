@@ -100,7 +100,7 @@
           <div class="controls">
             <button class="btn" onclick="window.history.back();" value="Back"></button>
             <g:actionSubmit
-              class="btn"
+              class="btn btn-primary"
               action="update"
               value="${message(code: 'default.button.update.label', default: 'Update')}" />
             <g:actionSubmit class="btn btn-danger"

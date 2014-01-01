@@ -29,7 +29,7 @@
     }
   </g:javascript>
   <g:hiddenField name="location-size" id="location-size" value="${partInstance?.parameters?.size()}" />
-  <table>
+  <table class="table-bordered">
     <thead>
       <tr>
         <th><g:message code="partParameter.kind.label"    default="Kind" /></th>
@@ -96,7 +96,7 @@
     </tbody>
   </table>
   <div class="btn-toolbar">
-    <button onclick="addPartParameter();" value="add" type="button" class="btn btn-primary">
+    <button onclick="addPartParameter();" value="add" type="button" class="btn">
       <i class="icon-plus-sign"></i>
     </button>
   </div>
