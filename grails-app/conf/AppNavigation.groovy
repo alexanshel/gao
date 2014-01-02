@@ -14,7 +14,8 @@ def isAdmin = { ->
 navigation = {
     mainMenu {
         //home(controller:'shop', action: 'search', visible: loggedIn)
-        shop(controller:'shop', action: 'search', visible: loggedIn) {
+        shop(controller:'shop', action: 'searchForm', visible: loggedIn) {
+          searchResult(controller: 'shop', action: 'searchAction')
           add(controller: 'part', action: 'create')
           edit(controller: 'part', action: 'edit')
         }
@@ -36,7 +37,7 @@ navigation = {
             edit()
           }
         }
-        login( controller: 'login',  action: 'index', visible: loggedOut) 
+        login( controller: 'login',  action: 'index', visible: loggedOut)
         logout(controller: 'logout', action: 'index', visible: loggedIn)
     }
      

@@ -61,7 +61,12 @@
         </li>
         <li class="span3">
           <g:form>
-            <g:submitButton class="btn btn-primary" name="searchAgain" value="${message(code: 'shop.search-again.button.label', default: 'Search again')}" />
+            <g:link class="btn btn-primary" name="searchAgain" action="searchForm"
+              params="${filter.asMap}"
+            >
+              <i class="icon-search icon-white"></i>
+              <g:message code="shop.search-again.button.label"/>
+            </g:link>
           </g:form>
         </li>
       </ul>

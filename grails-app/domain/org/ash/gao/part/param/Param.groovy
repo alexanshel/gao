@@ -30,9 +30,7 @@ class Param implements IGAOReference {
     else if (kind?.instanceOf(ParamKindString))
       valueString = value
     else if (kind?.instanceOf(ParamKindDate))
-      valueDate = value
-    else 
-      return null;
+      valueDate = value;
   }
   
   String toString() {

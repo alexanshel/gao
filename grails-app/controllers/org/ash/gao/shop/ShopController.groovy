@@ -9,7 +9,22 @@ class ShopController {
 
   // по умолчанию сразу редиректим на поиск (т.к. почти всегда работа начинатся с поиска)
   def index() {
-    redirect(action: 'search')
+    redirect(action: 'searchForm')
+  }
+
+
+  def searchForm(SearchCommand sc) {
+    render(
+      model: [filter: sc],
+      view: 'search/displaySearchForm'
+    )
+  }
+
+  def searchAction(SearchCommand sc) {
+    render([
+      model: partService.getFiltred(sc, params) + [filter: sc],
+      view: "search/displayResults"
+    ])
   }
 
   // поток поиска
@@ -47,9 +62,9 @@ class ShopController {
   def createPart() {
     def paramsNew = [:];
 
-    if (params.oem) paramsNew.oemCode = params.oem
-    if (params.part.type.id) paramsNew["type.id"] = params.part.type.id
-    if (params.part.kind.id) paramsNew["kind.id"] = params.part.kind.id
+    if (params?.oem) paramsNew.oemCode = params.oem
+    if (params.part?.type?.id) paramsNew["type.id"] = params.part.type.id
+    if (params.part?.kind?.id) paramsNew["kind.id"] = params.part.kind.id
 
     redirect(controller: "part", action: "create", params: paramsNew)
   }

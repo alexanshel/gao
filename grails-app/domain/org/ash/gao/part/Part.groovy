@@ -56,5 +56,7 @@ class Part implements IGAODomain {
     static mapping = {
       locations cascade: "all-delete-orphan"
       parameters cascade: "all-delete-orphan"
+      manufacturer cascade: "all-delete-orphan"
+      type cascade: "all-delete-orphan"
     }
 }

@@ -14,7 +14,7 @@ import org.ash.gao.part.param.ParamKind
  */
 @grails.validation.Validateable
 class SearchCommand implements Serializable {
-  String    oem
+  String    oem = ''
   PartType  partType    = new PartType(id: null, name: '')
   PartKind  partKind    = new PartKind(id: null, name: '')
   ParamKind paramKind   = new ParamKind(id: null, name: '')
@@ -31,6 +31,18 @@ class SearchCommand implements Serializable {
     oem=${oem};partType=${partType};partKind=${partKind};paramKind=${paramKind};
     withCrosses=${withCrosses};paramValue1=${paramValue1};paramValue2=${paramValue2}
     """
+  }
+
+  public Map getAsMap() {
+    def map = [:]
+    if (oem) map += [oem : oem]
+    if (partType?.id) map += ["partType.id" : partType.id]
+    if (partKind?.id) map += ["partKind.id" : partKind.id]
+    if (paramKind?.id) {
+      map += ["paramKind.id" : paramKind.id, paramValue1 : paramValue1, paramValue2: paramValue2]
+    }
+    map += [withCrosses : withCrosses]
+    return map
   }
 }
 

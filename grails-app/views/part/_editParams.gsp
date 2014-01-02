@@ -3,6 +3,8 @@
 <div class="list">
   <g:javascript>
     var paramsSize = ${partInstance?.parameters?.size()?:0};
+    var paramKindMap = ${paramKindMapJson};
+
     function addPartParameter() {
       var newL = $('#idTmpl').clone().appendTo('#idParametersTB').removeAttr('id').addClass('location');
       $('[name^="parameters[#]"]', newL).each(function () {
@@ -13,6 +15,15 @@
       });
       paramsSize = paramsSize + 1;
       newL.show();
+      onParamKindChange(newL.find('select.parameter-kind-id'));
+      newL.find('.parameter-value').keypress(function( event ) {
+        var $target = $(event.target);
+        console.log(event);
+        if ($target.is('.ParamKindNumber')) {
+          if (event.which == (','.charCodeAt(0)))
+            event.preventDefault();
+        }
+      });
     }
     function remPartParameter(button) {
       var lRow = $(button).closest('tr');
@@ -25,7 +36,9 @@
         lRow.remove();
     }
     function onParamKindChange(select) {
-      
+      var jSelect = jQuery(select);
+      var cssClass = paramKindMap[jSelect.val()];
+      jSelect.closest('tr').find('.parameter-value').addClass(cssClass);
     }
   </g:javascript>
   <g:hiddenField name="location-size" id="location-size" value="${partInstance?.parameters?.size()}" />

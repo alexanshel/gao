@@ -1,5 +1,6 @@
 package org.ash.gao.part
 
+import org.ash.gao.common.Manufacturer
 import org.ash.gao.part.param.*
 
 class PartService {
@@ -82,5 +83,24 @@ class PartService {
       [partInstanceList: Part.list(params), partInstanceTotal: Part.count()]
     }
       
+  }
+
+  def completeAssign(Part part) {
+    Manufacturer manufacturer = part.manufacturer
+    if (manufacturer && !manufacturer.id && manufacturer.name) {
+      // получили производителя без идентификатора,
+      // пытаемся найти его, нормализовав строку
+      // если удалось найти, подставляем найденый объект
+      Manufacturer foundMan = Manufacturer.findByNameIlike(manufacturer.name.trim().toLowerCase())
+      if (foundMan) part.manufacturer = foundMan
+    }
+  }
+
+  def getParamKindClassMap() {
+    def map = [:]
+    ParamKind.list().each {
+      map += ["${it.id}":it.class.simpleName]
+    }
+    map
   }
 }

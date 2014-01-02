@@ -71,7 +71,7 @@ log4j = {
     //}
 
 
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+    info  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP
 	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
 	       'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
@@ -85,6 +85,7 @@ log4j = {
     //debug 'org.grails.plugin.platform',
     //      'org.codehaus.groovy.grails.web.pages' //  GSP
     warn  'org.mortbay.log'
+    debug 'shop.ShopController'
 }
 
 

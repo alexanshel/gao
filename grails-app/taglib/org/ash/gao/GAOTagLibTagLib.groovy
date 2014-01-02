@@ -106,6 +106,7 @@ class GAOTagLibTagLib {
             <button
               class="btn" 
               type="button"
+              tabindex="-1"
               onclick="jQuery(document.getElementById('${valueId}')).val('');jQuery(document.getElementById('${keyId}')).val('');"
             ><i class="icon-remove"></i></button>
         """
