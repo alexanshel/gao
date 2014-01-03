@@ -110,7 +110,19 @@
                   </g:each>
                 </td>
                 <td class="menuButton">
-                  <g:link class="create" action="create" id="${partInstance.id}" target="_blank"/>
+                  <g:link class="create" controller="part" action="create" id="${partInstance.id}" target="_blank">
+                    <i class="icon-plus-sign"></i>
+                  </g:link>
+                  <g:if test="${partInstance?.cross?.parts?.size() > 1}">
+                    <br/>
+                    <g:link class="list" controller="partCross" action="show" id="${partInstance?.cross?.id}"
+                            target="_blank"
+                    >
+                      <g:message code="part.actions.show-crosses" default="Show Crosses"
+                                 args="[partInstance?.crossQty]"
+                      />
+                    </g:link>
+                  </g:if>
                 </td>
                 <!-- qty -->
                 <td>

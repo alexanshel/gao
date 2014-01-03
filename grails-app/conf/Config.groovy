@@ -50,7 +50,7 @@ grails.params.max = 50
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://www.gautoorders.com:8080"
+        grails.serverURL = "http://ubuntu-server:8080/${appName}"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
@@ -71,7 +71,7 @@ log4j = {
     //}
 
 
-    info  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP
 	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
 	       'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
