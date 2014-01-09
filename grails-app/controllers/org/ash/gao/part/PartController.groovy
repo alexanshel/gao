@@ -48,7 +48,7 @@ class PartController {
       if (!partCrossInstance) {
         partCrossInstance = new PartCross(name: "x")
         if (partCrossInstance.save(flush: true)) {
-          flash.message = "опаньки"
+          //flash.message = "опаньки"
         }
         partInstanceCross.cross = partCrossInstance
         partInstanceCross.save(flush: true)
@@ -66,6 +66,7 @@ class PartController {
 
     if (partInstance.save(flush: true)) {
       flash.message = "${message(code: 'part.created.message', args: [partInstance.oemCode, partInstance.type.name, partInstance.manufacturer.name ])}"
+      flash.createdPart = partInstance
       redirect(controller: "shop", action: "searchForm")
     } else {
       render(view: "create", model: [partInstance: partInstance])

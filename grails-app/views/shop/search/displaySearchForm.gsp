@@ -7,7 +7,13 @@
 </head>
 <body>
   <g:if test="${flash.message}">
-    <div class="alert alert-success">${flash.message}</div>
+    <div class="alert alert-success">
+      <span>${flash.message}</span>
+      <g:link controller="part" action="create" params="${[id: flash.createdPart?.id]}">
+        <g:message code="shop.create-part-analogue.label"/>
+        <i class="icon-plus-sign"></i>
+      </g:link>
+    </div>
   </g:if>
   <g:form method="get" controller="shop" action="searchAction">
     <p>
