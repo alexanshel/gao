@@ -50,7 +50,7 @@ grails.params.max = 50
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://ubuntu-server:8080/${appName}"
+        //grails.serverURL = "http://ubuntu-server:8080/${appName}"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
