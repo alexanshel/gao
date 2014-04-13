@@ -108,5 +108,6 @@
       </g:link>
     </p>
   </g:form>
+  <g:jasperReport jasper="all-parts" format="XLS"  description="${g.message([code: 'report.all-parts.name'])}"/>
 </body>
 </html>

@@ -56,6 +56,7 @@ grails.project.dependency.resolution = {
       }
       compile ":lesscss-resources:1.3.3"
       compile ":twitter-bootstrap:2.3.2"
-   
-  }
+      //runtime ':jasper:latest'
+
+    }
 }

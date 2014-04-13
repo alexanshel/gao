@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="all-parts" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="18a2e920-c68b-4e5a-96d1-3dc4aefeb948">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select
+  pc.ID,
+  p.OEM_CODE,
+  pt.NAME     as NAME_TYPE,
+  m.NAME      as NAME_MANUF,
+  l.NAME      as NAME_LOC,
+  pl.QTY,
+  pl.PRICE_IN,
+  pl.PRICE_OUT
+from PART p
+  left join PART_CROSS    pc on p.CROSS_ID = pc.ID
+  left join PART_TYPE     pt on pt.ID = p.TYPE_ID
+  left join PART_LOCATION pl on pl.PART_ID = p.ID
+  left join LOCATION       l on l.ID = pl.LOCATION_ID
+  left join MANUFACTURER   m on m.ID = p.MANUFACTURER_ID
+order by pc.ID, pt.NAME, m.NAME]]>
+	</queryString>
+	<field name="ID" class="java.lang.Long"/>
+	<field name="OEM_CODE" class="java.lang.String"/>
+	<field name="NAME_TYPE" class="java.lang.String"/>
+	<field name="NAME_MANUF" class="java.lang.String"/>
+	<field name="NAME_LOC" class="java.lang.String"/>
+	<field name="QTY" class="java.lang.Integer"/>
+	<field name="PRICE_IN" class="java.lang.Double"/>
+	<field name="PRICE_OUT" class="java.lang.Double"/>
+	<variable name="QTY_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{QTY}]]></variableExpression>
+	</variable>
+	<variable name="QTY_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{QTY}]]></variableExpression>
+	</variable>
+	<group name="ID">
+		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<textField>
+					<reportElement x="0" y="10" width="555" height="15" backcolor="#CCCCCC" uuid="8dab5e80-7a87-459f-a0bf-e1c9f7e1e07e"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{ID} ? "Аналоги " + $F{ID}: "Без аналогов")]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="NAME_TYPE">
+		<groupExpression><![CDATA[$F{NAME_TYPE}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="15" uuid="55511b09-3400-4806-b14a-966b1e1e62a1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Производитель]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="88" height="15" uuid="52ba7ffa-5ef6-49ea-87a9-9ccd9596ba8a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[OEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="88" y="0" width="112" height="15" uuid="9f776059-aff1-40c2-8b55-f1f9043db2aa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Наименование]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="15" uuid="4350edfb-6050-4359-bf55-0309f7592f06"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Склад]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="25" height="15" uuid="1e7d35fc-7c15-483d-bf65-acbe98960069"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[К-во]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="0" width="64" height="15" uuid="d24ebd19-88f2-4149-8796-62868a4fff49"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Цена 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="489" y="0" width="66" height="15" uuid="9fcb5b00-5c48-4e88-8d3d-fc9573412a9c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Цена 2]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="10" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="88" height="10" uuid="ed3f86bb-4502-4af5-bfc3-71e71a000174"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OEM_CODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="88" y="0" width="112" height="10" uuid="88e9509a-20d9-4457-b224-844a2bf1a720"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME_TYPE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="300" y="0" width="100" height="10" uuid="7316e93b-6b34-49f6-bc82-ee5ebf9b3c0c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME_LOC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="400" y="0" width="25" height="10" uuid="2980e61f-cb51-4a3e-8ef0-b25b6892e417"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QTY}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="425" y="0" width="64" height="10" uuid="aa36e5fb-da30-4fe7-aafe-8aa01378dda8">
+					<printWhenExpression><![CDATA[$F{PRICE_IN} != null && !$F{PRICE_IN}.equals(0d)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRICE_IN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="489" y="0" width="66" height="10" uuid="48078709-3805-4ad0-b19f-cc3b728058ba">
+					<printWhenExpression><![CDATA[$F{PRICE_OUT} != null && !$F{PRICE_OUT}.equals(0d)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRICE_OUT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="200" y="0" width="100" height="10" uuid="e04e7638-db31-4ee3-8741-c89128820366"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME_MANUF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="400" y="0" width="25" height="20" uuid="a26264bb-e3fa-4922-b0b6-e2f2a56c76fe"/>
+				<textElement textAlignment="Right">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{QTY_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
