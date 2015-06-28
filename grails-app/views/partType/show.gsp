@@ -55,14 +55,7 @@
               <td valign="top" class="value"><g:link controller="partKind" action="show" id="${partTypeInstance?.kind?.id}">${partTypeInstance?.kind?.encodeAsHTML()}</g:link></td>
               
             </tr>
-          
-            <tr class="prop">
-              <td valign="top" class="name"><g:message code="partType.parent.label" default="Parent" /></td>
-              
-              <td valign="top" class="value"><g:link controller="partType" action="show" id="${partTypeInstance?.parent?.id}">${partTypeInstance?.parent?.encodeAsHTML()}</g:link></td>
-              
-            </tr>
-          
+
             <tr class="prop">
               <td valign="top" class="name"><g:message code="partType.parts.label" default="Parts" /></td>
               
@@ -73,13 +66,6 @@
                 </g:each>
                 </ul>
               </td>
-              
-            </tr>
-          
-            <tr class="prop">
-              <td valign="top" class="name"><g:message code="partType.childsAll.label" default="Childs All" /></td>
-              
-              <td valign="top" class="value">${fieldValue(bean: partTypeInstance, field: "childsAll")}</td>
               
             </tr>
           

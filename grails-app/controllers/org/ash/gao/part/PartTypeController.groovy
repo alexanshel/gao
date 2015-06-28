@@ -6,7 +6,7 @@ import org.hibernate.criterion.IlikeExpression;
 
 class PartTypeController {
   static springSecurityService
-  
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -14,8 +14,8 @@ class PartTypeController {
     }
 
     def list = {
-      redirect(action: "tree", params: params)
-      params.max = Math.min(params.max ? params.int('max') : 10, 100) 
+      //redirect(action: "tree", params: params)
+      params.max = Math.min(params.max ? params.int('max') : 10, 100)
       params.sort = "name"
       params.order = "asc"
         [partTypeInstanceList: PartType.list(params), partTypeInstanceTotal: PartType.count()]

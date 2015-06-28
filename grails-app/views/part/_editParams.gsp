@@ -42,7 +42,7 @@
     }
   </g:javascript>
   <g:hiddenField name="location-size" id="location-size" value="${partInstance?.parameters?.size()}" />
-  <table class="table-bordered">
+  <table class="table-view">
     <thead>
       <tr>
         <th><g:message code="partParameter.kind.label"    default="Kind" /></th>

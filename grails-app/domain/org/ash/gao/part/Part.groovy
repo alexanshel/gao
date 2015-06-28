@@ -20,19 +20,19 @@ class Part implements IGAODomain {
       (cross?.parts - [this])?.collect {it?.locations*.qty.sum()?:0}?.sum()
     }
     String toString() {
-        "${oemCode} ${type} ${manufacturer.name}"
+        "${oemCode} ${type} ${manufacturer?.name}"
     }
     def beforeInsert() {
       oemCode = oemCode.trim()
       codeTrunc = oemCode
         .toLowerCase()
-        .replaceAll("\\W", '')
+        .replaceAll("\\s+", '')
     }
     def beforeUpdate() {
       oemCode = oemCode.trim()
       codeTrunc = oemCode
         .toLowerCase()
-        .replaceAll("\\W", '')
+        .replaceAll("\\s+", '')
     }
     static transients = ["qty", "crossQty"]
     static hasMany = [
@@ -46,7 +46,7 @@ class Part implements IGAODomain {
         cross: PartCross
     ]
     static constraints = {
-         oemCode(unique: true)
+         oemCode(unique: ['manufacturer'])
          type(nullable: false)
          manufacturer(nullable: false)
          locations(nullable: true)

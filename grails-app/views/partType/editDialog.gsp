@@ -39,16 +39,6 @@
             />
           </div>
         </div>
-        <div class="control-group ${hasErrors(bean: partTypeInstance, field: 'parent', 'error')}">
-          <label class="control-label" for="parent.id">${message(code: "partType.parent.label")}</label>
-          <div class="controls">
-            <g:select name="parent.id" from="${PartType.list()}" optionKey="id"
-              value="${partTypeInstance?.parent?.id}"
-              valueOld="${partTypeInstance?.parent?.id}"
-              class="savable-field"
-            />
-          </div>
-        </div>
       </div>
     </div>
     <div class="modal-footer">

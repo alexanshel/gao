@@ -44,25 +44,7 @@
                   <g:select name="kind.id" from="${org.ash.gao.part.PartKind.list()}" optionKey="id" value="${partTypeInstance?.kind?.id}"  />
                 </td>
               </tr>
-            
-              <tr class="prop">
-                <td valign="top" class="name">
-                  <label for="parent"><g:message code="partType.parent.label" default="Parent" /></label>
-                </td>
-                <td valign="top" class="value ${hasErrors(bean: partTypeInstance, field: 'parent', 'errors')}">
-                  <g:select name="parent.id" from="${org.ash.gao.part.PartType.list()}" optionKey="id" value="${partTypeInstance?.parent?.id}"  />
-                </td>
-              </tr>
-            
-              <tr class="prop">
-                <td valign="top" class="name">
-                  <label for="childsAll"><g:message code="partType.childsAll.label" default="Childs All" /></label>
-                </td>
-                <td valign="top" class="value ${hasErrors(bean: partTypeInstance, field: 'childsAll', 'errors')}">
-                  
-                </td>
-              </tr>
-            
+
             </tbody>
           </table>
         </div>

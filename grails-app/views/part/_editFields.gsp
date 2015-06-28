@@ -17,15 +17,21 @@
       currValue="${partInstance?.type?.name ?: ''}"
       class="long"
     />
-    <g:link
-      controller="partType"
-      tabindex="-1"
-      action="editDialog"
-      data-toggle="modal"
-      data-target="#modal"
-      class="btn">
-      <i class="icon-plus-sign"></i>
-    </g:link>
+    <g:checkBox
+      name="createType"
+      value="${filter.withCrosses}"
+      checked="${filter.withCrosses}"
+      onclick="clearValue"
+    />
+    %{--<g:link--}%
+      %{--controller="partType"--}%
+      %{--tabindex="-1"--}%
+      %{--action="editDialog"--}%
+      %{--data-toggle="modal"--}%
+      %{--data-target="#modal"--}%
+      %{--class="btn">--}%
+      %{--<i class="icon-plus-sign"></i>--}%
+    %{--</g:link>--}%
   </div>
 </div>
 <!-- Производитель -->

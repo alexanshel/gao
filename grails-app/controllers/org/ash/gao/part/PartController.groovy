@@ -12,6 +12,7 @@ class PartController {
   static springSecurityService
   def messageSource
   def partService
+  def partTypeService
 
   static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -65,8 +66,13 @@ class PartController {
     //if (params["manufacturer.id"].equals("null") && params["manufacturer.name"])
 
     if (partInstance.save(flush: true)) {
-      flash.message = "${message(code: 'part.created.message', args: [partInstance.oemCode, partInstance.type.name, partInstance.manufacturer.name ])}"
+      flash.message = """${
+        message(
+          code: 'part.created.message',
+          args: [partInstance.oemCode, partInstance.type.name, partInstance.manufacturer.name ])
+      }"""
       flash.createdPart = partInstance
+      partTypeService.cleanupPartTypes()
       redirect(controller: "shop", action: "searchForm")
     } else {
       render(view: "create", model: [partInstance: partInstance])
@@ -122,6 +128,7 @@ class PartController {
       }
       if (!partInstance.hasErrors() && partInstance.save(flush: true)) {
         flash.message = "${message(code: 'part.updated.message', args: [partInstance.oemCode, partInstance.type.name, partInstance.manufacturer.name ])}"
+        partTypeService.cleanupPartTypes()
         redirect(controller: "shop", action: "searchForm")
       } else {
         render(view: "edit", model: [partInstance: partInstance])

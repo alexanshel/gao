@@ -27,14 +27,14 @@
     }
   </g:javascript>
   <g:hiddenField name="location-size" id="location-size" value="${partInstance?.locations?.size()}" />
-  <table class="table-bordered">
+  <table class="table-striped">
     <thead>
       <tr>
         <th><g:message code="partLocation.location.label" default="Location" /></th>
         <th><g:message code="partLocation.qty.label"      default="Qty" /></th>
         <th><g:message code="partLocation.priceIn.label"  default="Price In" /></th>
         <th><g:message code="partLocation.priceOut.label" default="Price Out" /></th>
-        <th><g:message code="partLocation.control.label"  default="Control" /></th>
+        <th></th>
       </tr>
     </thead>
     <tbody id="idLocationsTB">
@@ -61,6 +61,7 @@
             <g:textField name="locations[${i}].priceOut" value="${partLocationInstance?.priceOut}" class="input-small location-price-out"/>
           </td>
           <td valign="top" class="value">
+            %{--<a onclick="remPartLocation(this)"><g:message code="default.button.delete.label"/></a>--}%
             <button onclick="remPartLocation(this);" value="add" type="button" class="btn btn-danger">
               <i class="icon-remove"></i>
             </button>

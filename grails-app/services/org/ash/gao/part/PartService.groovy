@@ -17,20 +17,16 @@ class PartService {
     def filterParamValue2 = filter.paramValue2
     // if one of filter values is set
     if (filterOEM || filterPartType_id || filterPartKind || filterParamKind)  {
-      def partTypeIds = []
-      // filter by partTypes
-      if (filterPartType_id) {
-        def partType =  PartType.get(filterPartType_id)
-        partTypeIds = [partType.id] + partType.childsAll*.id
-      }
-      def filterOEMTrunc = filterOEM?.toLowerCase()?.replaceAll("\\W", '')
+      def filterOEMTrunc = filterOEM?.toLowerCase()?.replaceAll("\\s+", '')
       // getting result
       def parts = Part.withCriteria {
         and {
-	      if (filterOEMTrunc)
+        if (filterOEMTrunc)
             ilike('codeTrunc', '%' + filterOEMTrunc + '%')
           if (filterPartType_id)
-            type {'in'('id', partTypeIds)}
+            type {
+              eq('id', filterPartType_id)
+            }
           if (filterPartKind)
             type {
               kind {

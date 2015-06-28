@@ -26,7 +26,7 @@
         <g:render template="editFields"/>
         <div class="control-group">
           <div class="controls">
-            <button class="btn" onclick="window.history.back();" value="Back"></button>
+            %{--<button class="btn" onclick="window.history.back();" value="Back"></button>--}%
             <g:actionSubmit
               class="btn btn-primary"
               action="update"

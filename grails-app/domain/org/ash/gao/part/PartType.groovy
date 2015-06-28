@@ -4,30 +4,19 @@ import org.ash.gao.part.param.*;
 import org.ash.gao.IGAODomain
 
 class PartType implements IGAODomain {
-    PartType parent
-    String   name
+  String name
 
-    String toString() {
-        if (parent != null)
-          return "${name}"
-        return name
-    }
-    def getChildsAll() {
-      def tmp = []
-      tmp = tmp + this.childs
-      childs?.each {tmp = tmp + it.childsAll}
-      tmp
-    }
-    static transients = ["childsAll"]
-    static belongsTo = [
-      parent: PartType,
-      kind: PartKind
-    ]
-    static hasMany = [
-      parts: Part,
-      childs: PartType,
-      paramKinds: ParamKind
-    ]
+  String toString() {
+    return name
+  }
+
+  static belongsTo = [
+    kind  : PartKind
+  ]
+  static hasMany = [
+    parts     : Part,
+    paramKinds: ParamKind
+  ]
   static constraints = {
     name(unique: true)
     kind(nullable: true)
