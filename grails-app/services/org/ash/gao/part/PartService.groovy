@@ -17,7 +17,7 @@ class PartService {
     def filterParamValue2 = filter.paramValue2
     // if one of filter values is set
     if (filterOEM || filterPartType_id || filterPartKind || filterParamKind)  {
-      def filterOEMTrunc = filterOEM?.toLowerCase()?.replaceAll("\\s+", '')
+      def filterOEMTrunc = filterOEM?.toLowerCase()?.replaceAll("\\W", '')
       // getting result
       def parts = Part.withCriteria {
         and {

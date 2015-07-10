@@ -26,13 +26,13 @@ class Part implements IGAODomain {
       oemCode = oemCode.trim()
       codeTrunc = oemCode
         .toLowerCase()
-        .replaceAll("\\s+", '')
+        .replaceAll("\\W", '')
     }
     def beforeUpdate() {
       oemCode = oemCode.trim()
       codeTrunc = oemCode
         .toLowerCase()
-        .replaceAll("\\s+", '')
+        .replaceAll("\\W", '')
     }
     static transients = ["qty", "crossQty"]
     static hasMany = [
